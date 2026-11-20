@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
   <!-- Hidden Checkboxes for Pure CSS Transitions -->
@@ -200,17 +200,18 @@
     }
 
     function applyGlowColors(bass, mid) {
-      hueOffset = (hueOffset + 0.9 + mid * 6.5) % 360;
-      const energy = Math.min(1, bass * 1.45);
-      const h1 = Math.round((245 + hueOffset) % 360);
-      const h2 = Math.round((190 + hueOffset) % 360);
+        hueOffset = (hueOffset + 2.4 + mid * 10) % 360;
+const energy = Math.min(1, bass * 1.6);
+const h1 = Math.round((280 + hueOffset) % 360);
+const h2 = Math.round((185 + hueOffset) % 360);
 
-      siteWrapper.style.setProperty("--beat-color", `hsl(${h1}, 92%, 60%)`);
-      siteWrapper.style.setProperty("--beat-accent", `hsl(${h2}, 95%, 54%)`);
-      siteWrapper.style.setProperty("--beat-glow", `hsla(${h1}, 92%, 56%, ${(0.32 + energy * 0.5).toFixed(2)})`);
-      siteWrapper.style.setProperty("--beat-glow-soft", `hsla(${h1}, 92%, 56%, ${(0.18 + energy * 0.34).toFixed(2)})`);
-      siteWrapper.style.setProperty("--beat-spread", `${(16 + energy * 34).toFixed(1)}px`);
-      siteWrapper.style.setProperty("--beat-scale", (1 + energy * 0.075).toFixed(3));
+siteWrapper.style.setProperty("--beat-color", `hsl(${h1}, 95%, 62%)`);
+siteWrapper.style.setProperty("--beat-accent", `hsl(${h2}, 96%, 56%)`);
+siteWrapper.style.setProperty("--beat-bg-tint", `hsl(${h1}, 78%, 22%)`);
+siteWrapper.style.setProperty("--beat-glow", `hsla(${h1}, 95%, 58%, ${(0.45 + energy * 0.5).toFixed(2)})`);
+siteWrapper.style.setProperty("--beat-glow-soft", `hsla(${h1}, 95%, 58%, ${(0.22 + energy * 0.35).toFixed(2)})`);
+siteWrapper.style.setProperty("--beat-spread", `${(22 + energy * 42).toFixed(1)}px`);
+siteWrapper.style.setProperty("--beat-scale", (1 + energy * 0.085).toFixed(3));
 
       if (eqBars.length === 3) {
         eqBars[0].style.transform = `scaleY(${0.35 + bass * 0.95})`;
