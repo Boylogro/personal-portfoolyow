@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <!-- Hidden Checkboxes for Pure CSS Transitions -->
@@ -87,6 +87,9 @@
           <div class="portrait-frame">
             <img src="images/myface.jpg" alt="Portrait photo of Cee Sir B. Rufon" class="profile-photo">
           </div>
+          <blockquote class="profile-quote">
+            &ldquo;Do it for the love of the game&rdquo;
+          </blockquote>
         </div>
       </section>
 
@@ -131,6 +134,50 @@
               <li>GitHub</li>
               <li>Cloudflare Pages</li>
               <li>Linux / WSL</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="skills-section" aria-labelledby="interests-heading">
+        <div class="section-header">
+          <span class="section-kicker">Beyond the Code</span>
+          <h2 id="interests-heading">Things I Like</h2>
+          <p class="section-intro">What keeps my energy high and my mind sharp outside of labs and coding.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card">
+            <span class="card-index">01</span>
+            <h3>Rock &amp; Heavy Metal Music</h3>
+            <p>Listening to high-energy rock and metal riffs while building and debugging&mdash;especially Metallica, AC/DC, Slipknot, and System of a Down.</p>
+            <ul class="tag-list">
+              <li>Metallica</li>
+              <li>AC/DC</li>
+              <li>Slipknot</li>
+              <li>System of a Down</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <span class="card-index">02</span>
+            <h3>Solving Problems</h3>
+            <p>Breaking down tough technical bottlenecks, tracing root causes in hardware or code, and engineering clean solutions that work.</p>
+            <ul class="tag-list">
+              <li>Root-Cause Analysis</li>
+              <li>Debugging</li>
+              <li>Critical Thinking</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <span class="card-index">03</span>
+            <h3>Dealing with Puzzles</h3>
+            <p>Tackling logic puzzles, brainteasers, and pattern-recognition challenges that reward patience, focus, and creative strategy.</p>
+            <ul class="tag-list">
+              <li>Logic Puzzles</li>
+              <li>Pattern Recognition</li>
+              <li>Strategy</li>
             </ul>
           </article>
         </div>
@@ -200,18 +247,18 @@
     }
 
     function applyGlowColors(bass, mid) {
-        hueOffset = (hueOffset + 2.4 + mid * 10) % 360;
-const energy = Math.min(1, bass * 1.6);
-const h1 = Math.round((280 + hueOffset) % 360);
-const h2 = Math.round((185 + hueOffset) % 360);
+      hueOffset = (hueOffset + 2.4 + mid * 10) % 360;
+      const energy = Math.min(1, bass * 1.6);
+      const h1 = Math.round((280 + hueOffset) % 360);
+      const h2 = Math.round((185 + hueOffset) % 360);
 
-siteWrapper.style.setProperty("--beat-color", `hsl(${h1}, 95%, 62%)`);
-siteWrapper.style.setProperty("--beat-accent", `hsl(${h2}, 96%, 56%)`);
-siteWrapper.style.setProperty("--beat-bg-tint", `hsl(${h1}, 78%, 22%)`);
-siteWrapper.style.setProperty("--beat-glow", `hsla(${h1}, 95%, 58%, ${(0.45 + energy * 0.5).toFixed(2)})`);
-siteWrapper.style.setProperty("--beat-glow-soft", `hsla(${h1}, 95%, 58%, ${(0.22 + energy * 0.35).toFixed(2)})`);
-siteWrapper.style.setProperty("--beat-spread", `${(22 + energy * 42).toFixed(1)}px`);
-siteWrapper.style.setProperty("--beat-scale", (1 + energy * 0.085).toFixed(3));
+      siteWrapper.style.setProperty("--beat-color", `hsl(${h1}, 95%, 62%)`);
+      siteWrapper.style.setProperty("--beat-accent", `hsl(${h2}, 96%, 56%)`);
+      siteWrapper.style.setProperty("--beat-bg-tint", `hsl(${h1}, 78%, 22%)`);
+      siteWrapper.style.setProperty("--beat-glow", `hsla(${h1}, 95%, 58%, ${(0.45 + energy * 0.5).toFixed(2)})`);
+      siteWrapper.style.setProperty("--beat-glow-soft", `hsla(${h1}, 95%, 58%, ${(0.22 + energy * 0.35).toFixed(2)})`);
+      siteWrapper.style.setProperty("--beat-spread", `${(22 + energy * 42).toFixed(1)}px`);
+      siteWrapper.style.setProperty("--beat-scale", (1 + energy * 0.085).toFixed(3));
 
       if (eqBars.length === 3) {
         eqBars[0].style.transform = `scaleY(${0.35 + bass * 0.95})`;
