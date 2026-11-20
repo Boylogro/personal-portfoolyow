@@ -1005,4 +1005,78 @@
       top: 52px;
       font-size: 0.8rem;
     }
+    /* =========================================================
+   Audio-Harmonic / Beat-Reactive Color Sync
+   ========================================================= */
+.site-wrapper {
+    --beat-hue-num: 0;
+    --beat-energy: 0;
+    --beat-scale: 1;
+  }
+  
+  .site-wrapper.music-reactive {
+    --primary: hsl(calc(245 + var(--beat-hue-num)), 86%, 60%);
+    --primary-hover: hsl(calc(245 + var(--beat-hue-num)), 86%, 52%);
+    --accent: hsl(calc(190 + var(--beat-hue-num)), 92%, 52%);
+  }
+  
+  .site-wrapper.music-reactive .hero {
+    border-color: hsla(calc(245 + var(--beat-hue-num)), 90%, 65%, calc(0.35 + var(--beat-energy) * 0.55));
+    box-shadow:
+      0 20px 50px hsla(calc(245 + var(--beat-hue-num)), 85%, 52%, calc(0.22 + var(--beat-energy) * 0.45)),
+      inset 0 0 calc(20px + var(--beat-energy) * 35px) hsla(calc(190 + var(--beat-hue-num)), 90%, 55%, calc(0.08 + var(--beat-energy) * 0.22));
+  }
+  
+  .site-wrapper.music-reactive .gradient-text {
+    background: linear-gradient(
+      135deg,
+      hsl(calc(245 + var(--beat-hue-num)), 95%, 76%) 0%,
+      hsl(calc(195 + var(--beat-hue-num)), 95%, 62%) 55%,
+      hsl(calc(310 + var(--beat-hue-num)), 92%, 68%) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .site-wrapper.music-reactive .status-badge {
+    color: var(--accent);
+    border-color: var(--accent);
+    background-color: hsla(calc(190 + var(--beat-hue-num)), 90%, 55%, 0.14);
+  }
+  
+  .site-wrapper.music-reactive .portrait-frame {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    transform: scale(var(--beat-scale));
+    box-shadow: 0 0 calc(28px + var(--beat-energy) * 38px) hsla(calc(245 + var(--beat-hue-num)), 90%, 60%, calc(0.45 + var(--beat-energy) * 0.45));
+    transition: transform 0.08s ease-out;
+  }
+  
+  .site-wrapper.music-reactive .skill-card {
+    border-color: hsla(calc(245 + var(--beat-hue-num)), 85%, 60%, calc(0.25 + var(--beat-energy) * 0.45));
+  }
+  
+  /* Equalizer Bars Inside Audio Pill */
+  .audio-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  
+  .eq-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2.5px;
+    height: 13px;
+  }
+  
+  .eq-bar {
+    width: 3px;
+    height: 100%;
+    border-radius: 2px;
+    background-color: #ffffff;
+    transform: scaleY(0.35);
+    transform-origin: bottom;
+    transition: transform 0.07s ease-out;
+  }
   }
