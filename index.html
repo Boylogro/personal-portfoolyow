@@ -3,68 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cee Sir B. Rufon | Personal Portfolio</title>
+  <title>Cee Sir B. Rufon | Computer Engineering Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">Cee Sir B. Rufon</a>
-      <nav aria-label="Main navigation">
-        <ul class="nav-list">
-          <li><a href="index.html" class="active">Home</a></li>
+  <!-- Hidden Checkboxes for Pure CSS Transitions -->
+  <input type="checkbox" id="enter-site" class="intro-checkbox" aria-label="Enter portfolio">
+  <input type="checkbox" id="theme-toggle" class="theme-checkbox" aria-label="Toggle dark mode">
+
+  <!-- Full-Screen Space & Peeking Earth Intro Overlay -->
+  <div class="earth-intro" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+    <div class="starfield" aria-hidden="true"></div>
+    <div class="intro-hud">
+      <span class="intro-kicker">SYSTEM READY // CEE SIR B. RUFON</span>
+      <h2 id="intro-title">Click the Earth to Enter</h2>
+      <p>Tap the glowing horizon below to launch portfolio &amp; play intro</p>
+    </div>
+    <label for="enter-site" class="earth-trigger" title="Click Earth to Enter">
+      <span class="earth-globe" aria-hidden="true"></span>
+      <span class="earth-cta">ENTER</span>
+    </label>
+  </div>
+
+  <!-- AC/DC Back in Black Intro Audio -->
+  <audio id="intro-audio" src="audio/back-in-black.mp3" preload="auto"></audio>
+
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">CR</span>
+          <span>Cee Sir B. Rufon</span>
+        </a>
+        <div class="header-controls">
+          <nav aria-label="Main navigation">
+            <ul class="nav-list">
+              <li><a href="index.html" class="active">Home</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </nav>
+          <label for="theme-toggle" class="theme-switch" title="Switch Light / Dark Theme">
+            <span class="theme-label-dark">Dark</span>
+            <span class="theme-label-light">Light</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="hero-content">
+          <span class="status-badge">4th Year Computer Engineering &bull; UIC</span>
+          <h1 id="hero-heading">Hi, I'm <span class="gradient-text">Cee Sir B. Rufon</span></h1>
+          <p class="hero-bio">
+            I am a 4th-year Computer Engineering student passionate about bridging hardware automation, machine learning, and modern software applications.
+            Throughout my college journey, I have engineered embedded library systems, trained computer vision models for medical imaging, and built full-featured rental management apps.
+            I enjoy turning complex technical challenges into clean, reliable, and user-centered solutions.
+            Explore my featured builds below or reach out to collaborate on engineering and web projects.
+          </p>
+          <div class="hero-actions">
+            <a href="projects.html" class="btn btn-primary">Explore My Projects</a>
+            <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+          </div>
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-value">4th Yr</span>
+              <span class="metric-label">BS Computer Engineering</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">3+</span>
+              <span class="metric-label">Major Systems Built</span>
+            </div>
+            <div class="metric-item">
+              <span class="metric-value">HW + SW</span>
+              <span class="metric-label">Embedded, ML &amp; Web</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <img src="images/myface.jpg" alt="Portrait photo of Cee Sir B. Rufon" class="profile-photo">
+          </div>
+        </div>
+      </section>
+
+      <section class="skills-section" aria-labelledby="skills-heading">
+        <div class="section-header">
+          <span class="section-kicker">Technical Stack</span>
+          <h2 id="skills-heading">Core Engineering &amp; Development Skills</h2>
+          <p class="section-intro">Combining hardware-level thinking with responsive frontend architecture and cloud deployment.</p>
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card">
+            <span class="card-index">01</span>
+            <h3>Frontend &amp; Web Architecture</h3>
+            <p>Building semantic HTML5 structures, responsive CSS Grid/Flexbox interfaces, and accessible user experiences.</p>
+            <ul class="tag-list">
+              <li>HTML5</li>
+              <li>CSS3</li>
+              <li>Flexbox &amp; Grid</li>
+              <li>Accessibility</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <span class="card-index">02</span>
+            <h3>Systems, Hardware &amp; ML</h3>
+            <p>Designing automated hardware workflows, digital logic circuits, and machine learning vision pipelines.</p>
+            <ul class="tag-list">
+              <li>Python</li>
+              <li>C++</li>
+              <li>Computer Vision</li>
+              <li>Embedded Systems</li>
+            </ul>
+          </article>
+
+          <article class="skill-card">
+            <span class="card-index">03</span>
+            <h3>Version Control &amp; Cloud</h3>
+            <p>Managing structured Git commit histories, GitHub repositories, and automated static deployments on Cloudflare.</p>
+            <ul class="tag-list">
+              <li>Git</li>
+              <li>GitHub</li>
+              <li>Cloudflare Pages</li>
+              <li>Linux / WSL</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; 2026 Cee Sir B. Rufon. Designed &amp; built with semantic HTML5 &amp; CSS3.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="hero">
-      <img src="images/profile.jpg" alt="Portrait photo of Cee Sir B. Rufon" class="profile-photo">
-      <div class="hero-content">
-        <h1>Hi, I'm Cee Sir B. Rufon</h1>
-        <p>
-          I am a 4th-year Computer Engineering student passionate about bridging hardware systems and software development.
-          Throughout my college journey, I have worked on digital logic design, programming, and building clean, responsive web applications.
-          I enjoy solving technical problems and turning engineering concepts into practical, user-friendly projects.
-          Explore my coursework and personal builds below, or reach out if you would like to connect.
-        </p>
-        <div class="hero-actions">
-          <a href="projects.html" class="btn">View My Projects</a>
-          <a href="contact.html" class="btn btn-outline">Contact Me</a>
-        </div>
       </div>
-    </section>
+    </footer>
 
-    <section class="skills-section">
-      <h2>Core Skills</h2>
-      <div class="skills-grid">
-        <article class="skill-card">
-          <h3>Web Development</h3>
-          <p>Semantic HTML5, responsive CSS3 layouts using Flexbox and Grid, and web accessibility.</p>
-        </article>
-        <article class="skill-card">
-          <h3>Programming &amp; Logic</h3>
-          <p>Problem solving in C++, Python, and hardware description languages for digital systems.</p>
-        </article>
-        <article class="skill-card">
-          <h3>Git &amp; Cloud Deployment</h3>
-          <p>Version control with Git and GitHub, plus static site hosting on Cloudflare Pages.</p>
-        </article>
-      </div>
-    </section>
-  </main>
+    <!-- Floating Audio Control Button -->
+    <button type="button" id="audio-toggle" class="audio-pill" aria-label="Pause or play intro music">
+      Pause Intro
+    </button>
+  </div>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; 2026 Cee Sir B. Rufon. Built with HTML &amp; CSS.</p>
-      <ul class="footer-links">
-        <li><a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </footer>
+  <script>
+    const enterCheckbox = document.getElementById("enter-site");
+    const introAudio = document.getElementById("intro-audio");
+    const audioToggle = document.getElementById("audio-toggle");
+
+    enterCheckbox.addEventListener("change", () => {
+      if (enterCheckbox.checked) {
+        introAudio.currentTime = 0;
+        introAudio.play().catch(() => {});
+        audioToggle.textContent = "Pause Intro";
+      }
+    });
+
+    audioToggle.addEventListener("click", () => {
+      if (introAudio.paused) {
+        introAudio.play();
+        audioToggle.textContent = "Pause Intro";
+      } else {
+        introAudio.pause();
+        audioToggle.textContent = "Play Intro";
+      }
+    });
+
+    introAudio.addEventListener("ended", () => {
+      audioToggle.textContent = "Replay Intro";
+    });
+  </script>
 </body>
 </html>

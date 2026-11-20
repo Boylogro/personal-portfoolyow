@@ -4,63 +4,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Cee Sir B. Rufon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">Cee Sir B. Rufon</a>
-      <nav aria-label="Main navigation">
-        <ul class="nav-list">
+  <input type="checkbox" id="theme-toggle" class="theme-checkbox" aria-label="Toggle dark mode">
+
+  <div class="site-wrapper">
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-mark">CR</span>
+          <span>Cee Sir B. Rufon</span>
+        </a>
+        <div class="header-controls">
+          <nav aria-label="Main navigation">
+            <ul class="nav-list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="projects.html">Projects</a></li>
+              <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+          </nav>
+          <label for="theme-toggle" class="theme-switch" title="Switch Light / Dark Theme">
+            <span class="theme-label-dark">Dark</span>
+            <span class="theme-label-light">Light</span>
+          </label>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="page-section" aria-labelledby="contact-heading">
+        <div class="section-header">
+          <span class="section-kicker">Let's Connect</span>
+          <h1 id="contact-heading">Get In Touch</h1>
+          <p class="section-intro">Have an engineering project, internship opportunity, or question? Reach out directly or drop a message below.</p>
+        </div>
+
+        <div class="contact-layout">
+          <div class="contact-info">
+            <h2>Direct Contact Details</h2>
+            <p>Feel free to reach me via university email, mobile, or GitHub. I respond promptly to project inquiries and collaborations.</p>
+
+            <ul class="contact-details">
+              <li>
+                <span class="contact-label">University Email</span>
+                <a href="mailto:crufon_230000001829@uic.edu.ph">crufon_230000001829@uic.edu.ph</a>
+              </li>
+              <li>
+                <span class="contact-label">Mobile Number</span>
+                <a href="tel:+639456783317">0945 678 3317</a>
+              </li>
+              <li>
+                <span class="contact-label">GitHub Profile</span>
+                <a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer">github.com/Boylogro</a>
+              </li>
+            </ul>
+          </div>
+
+          <form class="contact-form" action="#" method="post">
+            <h2>Send a Message</h2>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="juan@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" placeholder="Tell me about your project or inquiry..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; 2026 Cee Sir B. Rufon. Designed &amp; built with semantic HTML5 &amp; CSS3.</p>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer">GitHub</a></li>
           <li><a href="index.html">Home</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section class="page-section contact-layout">
-      <div class="contact-info">
-        <h1>Contact Me</h1>
-        <p>Have a question, project idea, or want to connect? Send a message using the form or reach out directly.</p>
-        <ul class="contact-details">
-          <li><strong>Email:</strong> <a href="mailto:crufon_230000001829@uic.edu.ph">crufon_230000001829@uic.edu.ph</a></li>
-          <li><strong>Phone:</strong> <a href="tel:+639456783317">0945 678 3317</a></li>
-          <li><strong>GitHub:</strong> <a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer">github.com/Boylogro</a></li>
         </ul>
       </div>
-
-      <form class="contact-form" action="#" method="post">
-        <div class="form-group">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Your Email</label>
-          <input type="email" id="email" name="email" placeholder="juan@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-        </div>
-
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; 2026 Cee Sir B. Rufon. Built with HTML &amp; CSS.</p>
-      <ul class="footer-links">
-        <li><a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </div>
-  </footer>
+    </footer>
+  </div>
 </body>
 </html>
