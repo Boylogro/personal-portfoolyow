@@ -1,3 +1,12 @@
+/*
+ * Color Palette:
+ *   Light Mode: Background #f4f6fb | Surface #ffffff | Primary #4f46e5 | Accent #06b6d4 | Text #0f172a
+ *   Dark Mode:  Background #070b14 | Surface #0f172a | Primary #6366f1 | Accent #22d3ee | Text #f8fafc
+ * Typography:
+ *   Headings & Body: "Plus Jakarta Sans", sans-serif
+ *   Badges & Code Labels: "JetBrains Mono", monospace
+ */
+
 /* =========================================================
    Theme Variables & CSS-Only Dark Mode
    ========================================================= */
