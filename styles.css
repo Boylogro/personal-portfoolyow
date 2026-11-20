@@ -1079,4 +1079,10 @@
     transform-origin: bottom;
     transition: transform 0.07s ease-out;
   }
+  .site-wrapper.music-reactive .project-card,
+.site-wrapper.music-reactive .contact-details li,
+.site-wrapper.music-reactive .contact-form {
+  border-color: hsla(calc(245 + var(--beat-hue-num)), 85%, 60%, calc(0.28 + var(--beat-energy) * 0.45));
+  box-shadow: 0 12px 32px hsla(calc(245 + var(--beat-hue-num)), 85%, 52%, calc(0.08 + var(--beat-energy) * 0.18));
+}
   }

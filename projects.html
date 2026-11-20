@@ -13,6 +13,9 @@
 <body>
   <input type="checkbox" id="theme-toggle" class="theme-checkbox" aria-label="Toggle dark mode">
 
+  <!-- AC/DC Back in Black Intro Audio -->
+  <audio id="intro-audio" src="audio/back-in-black.mp3" preload="auto"></audio>
+
   <div class="site-wrapper">
     <header class="site-header">
       <div class="container header-inner">
@@ -82,9 +85,6 @@
                 <li>Kiosk UI</li>
                 <li>Systems Engineering</li>
               </ul>
-              <div class="card-actions">
-                <a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Repository on GitHub</a>
-              </div>
             </div>
           </article>
 
@@ -115,9 +115,6 @@
                 <li>Medical Imaging</li>
                 <li>Python</li>
               </ul>
-              <div class="card-actions">
-                <a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Repository on GitHub</a>
-              </div>
             </div>
           </article>
 
@@ -167,9 +164,6 @@
                 <li>Booking System</li>
                 <li>Multi-Branch Management</li>
               </ul>
-              <div class="card-actions">
-                <a href="https://github.com/Boylogro" target="_blank" rel="noopener noreferrer" class="btn btn-primary">View Repository on GitHub</a>
-              </div>
             </div>
           </article>
         </div>
@@ -186,6 +180,148 @@
         </ul>
       </div>
     </footer>
+
+    <!-- Floating Audio Control Button with Live Equalizer -->
+    <button type="button" id="audio-toggle" class="audio-pill" aria-label="Pause or play intro music">
+      <span class="eq-bars" aria-hidden="true">
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+        <span class="eq-bar"></span>
+      </span>
+      <span id="audio-label">Play Intro</span>
+    </button>
   </div>
+
+  <script>
+    sessionStorage.setItem("skip_earth_once", "true");
+
+    const introAudio = document.getElementById("intro-audio");
+    const audioToggle = document.getElementById("audio-toggle");
+    const audioLabel = document.getElementById("audio-label");
+    const siteWrapper = document.querySelector(".site-wrapper");
+    const eqBars = document.querySelectorAll(".eq-bar");
+
+    let audioCtx = null;
+    let analyser = null;
+    let dataArray = null;
+    let animId = null;
+    let hueOffset = parseFloat(sessionStorage.getItem("bg_audio_hue") || "0");
+
+    function saveAudioState() {
+      sessionStorage.setItem("bg_audio_time", String(introAudio.currentTime || 0));
+      sessionStorage.setItem("bg_audio_playing", String(!introAudio.paused && !introAudio.ended));
+      sessionStorage.setItem("bg_audio_hue", String(hueOffset));
+    }
+
+    function setupAudioReactive() {
+      if (audioCtx) {
+        if (audioCtx.state === "suspended") {
+          audioCtx.resume();
+        }
+        return;
+      }
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+
+      audioCtx = new AudioContextClass();
+      const source = audioCtx.createMediaElementSource(introAudio);
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 128;
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      dataArray = new Uint8Array(analyser.frequencyBinCount);
+    }
+
+    function updateBeatColors() {
+      if (introAudio.paused || introAudio.ended) {
+        siteWrapper.classList.remove("music-reactive");
+        return;
+      }
+
+      if (analyser && dataArray) {
+        analyser.getByteFrequencyData(dataArray);
+
+        let bassSum = 0;
+        for (let i = 0; i < 10; i++) bassSum += dataArray[i];
+        const bass = bassSum / (10 * 255);
+
+        let midSum = 0;
+        for (let i = 10; i < 42; i++) midSum += dataArray[i];
+        const mid = midSum / (32 * 255);
+
+        hueOffset = (hueOffset + 0.7 + mid * 5.5) % 360;
+        const energy = Math.min(1, bass * 1.3);
+
+        siteWrapper.style.setProperty("--beat-hue-num", hueOffset.toFixed(1));
+        siteWrapper.style.setProperty("--beat-energy", energy.toFixed(3));
+
+        if (eqBars.length === 3) {
+          eqBars[0].style.transform = `scaleY(${0.35 + bass * 0.95})`;
+          eqBars[1].style.transform = `scaleY(${0.35 + mid * 1.05})`;
+          eqBars[2].style.transform = `scaleY(${0.35 + ((bass + mid) / 2) * 0.95})`;
+        }
+      }
+
+      saveAudioState();
+      animId = requestAnimationFrame(updateBeatColors);
+    }
+
+    introAudio.addEventListener("play", () => {
+      siteWrapper.classList.add("music-reactive");
+      audioToggle.classList.add("is-playing");
+      audioLabel.textContent = "Pause Intro";
+      saveAudioState();
+      cancelAnimationFrame(animId);
+      updateBeatColors();
+    });
+
+    introAudio.addEventListener("pause", () => {
+      siteWrapper.classList.remove("music-reactive");
+      audioToggle.classList.remove("is-playing");
+      saveAudioState();
+      cancelAnimationFrame(animId);
+    });
+
+    introAudio.addEventListener("ended", () => {
+      siteWrapper.classList.remove("music-reactive");
+      audioToggle.classList.remove("is-playing");
+      audioLabel.textContent = "Replay Intro";
+      saveAudioState();
+      cancelAnimationFrame(animId);
+    });
+
+    const savedTime = parseFloat(sessionStorage.getItem("bg_audio_time") || "0");
+    const wasPlaying = sessionStorage.getItem("bg_audio_playing") === "true";
+
+    const resumeAudio = () => {
+      if (savedTime > 0 && savedTime < (introAudio.duration || Infinity)) {
+        introAudio.currentTime = savedTime;
+      }
+      if (wasPlaying) {
+        setupAudioReactive();
+        introAudio.play().catch(() => {
+          audioLabel.textContent = "Play Intro";
+        });
+      }
+    };
+
+    if (introAudio.readyState >= 1) {
+      resumeAudio();
+    } else {
+      introAudio.addEventListener("loadedmetadata", resumeAudio, { once: true });
+    }
+
+    audioToggle.addEventListener("click", () => {
+      setupAudioReactive();
+      if (introAudio.paused) {
+        introAudio.play();
+      } else {
+        introAudio.pause();
+        audioLabel.textContent = "Play Intro";
+      }
+    });
+
+    window.addEventListener("pagehide", saveAudioState);
+  </script>
 </body>
 </html>

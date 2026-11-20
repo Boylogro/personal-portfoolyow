@@ -155,11 +155,12 @@
         <span class="eq-bar"></span>
         <span class="eq-bar"></span>
       </span>
-      <span id="audio-label">Pause Intro</span>
+      <span id="audio-label">Play Intro</span>
     </button>
   </div>
 
   <script>
+    const enterCheckbox = document.getElementById("enter-site");
     const earthTrigger = document.querySelector(".earth-trigger");
     const introAudio = document.getElementById("intro-audio");
     const audioToggle = document.getElementById("audio-toggle");
@@ -171,7 +172,13 @@
     let analyser = null;
     let dataArray = null;
     let animId = null;
-    let hueOffset = 0;
+    let hueOffset = parseFloat(sessionStorage.getItem("bg_audio_hue") || "0");
+
+    function saveAudioState() {
+      sessionStorage.setItem("bg_audio_time", String(introAudio.currentTime || 0));
+      sessionStorage.setItem("bg_audio_playing", String(!introAudio.paused && !introAudio.ended));
+      sessionStorage.setItem("bg_audio_hue", String(hueOffset));
+    }
 
     function setupAudioReactive() {
       if (audioCtx) {
@@ -224,6 +231,7 @@
         }
       }
 
+      saveAudioState();
       animId = requestAnimationFrame(updateBeatColors);
     }
 
@@ -231,6 +239,7 @@
       siteWrapper.classList.add("music-reactive");
       audioToggle.classList.add("is-playing");
       audioLabel.textContent = "Pause Intro";
+      saveAudioState();
       cancelAnimationFrame(animId);
       updateBeatColors();
     });
@@ -238,6 +247,7 @@
     introAudio.addEventListener("pause", () => {
       siteWrapper.classList.remove("music-reactive");
       audioToggle.classList.remove("is-playing");
+      saveAudioState();
       cancelAnimationFrame(animId);
     });
 
@@ -245,8 +255,36 @@
       siteWrapper.classList.remove("music-reactive");
       audioToggle.classList.remove("is-playing");
       audioLabel.textContent = "Replay Intro";
+      saveAudioState();
       cancelAnimationFrame(animId);
     });
+
+    // Skip Earth overlay only when navigating back from Projects or Contact
+    if (sessionStorage.getItem("skip_earth_once") === "true") {
+      sessionStorage.removeItem("skip_earth_once");
+      enterCheckbox.checked = true;
+
+      const savedTime = parseFloat(sessionStorage.getItem("bg_audio_time") || "0");
+      const wasPlaying = sessionStorage.getItem("bg_audio_playing") === "true";
+
+      const resumeAudio = () => {
+        if (savedTime > 0 && savedTime < (introAudio.duration || Infinity)) {
+          introAudio.currentTime = savedTime;
+        }
+        if (wasPlaying) {
+          setupAudioReactive();
+          introAudio.play().catch(() => {
+            audioLabel.textContent = "Play Intro";
+          });
+        }
+      };
+
+      if (introAudio.readyState >= 1) {
+        resumeAudio();
+      } else {
+        introAudio.addEventListener("loadedmetadata", resumeAudio, { once: true });
+      }
+    }
 
     earthTrigger.addEventListener("click", () => {
       setupAudioReactive();
@@ -265,6 +303,8 @@
         audioLabel.textContent = "Play Intro";
       }
     });
+
+    window.addEventListener("pagehide", saveAudioState);
   </script>
 </body>
 </html>
