@@ -1,24 +1,24 @@
-# Personal Portfolio Website
+# Personal Portfolio — Cee Sir B. Rufon
 
-A multi-page personal portfolio built with semantic HTML5 and external CSS3, deployed via GitHub and Cloudflare Pages.
+**Live Site:** [https://personal-portfoolyow.pages.dev](https://personal-portfoolyow.pages.dev)  
+**GitHub Repository:** [https://github.com/Boylogro/personal-portfoolyow](https://github.com/Boylogro/personal-portfoolyow)
 
-## Live Site
-- **Cloudflare Pages URL:** https://your-portfolio.pages.dev
+## Overview
+A responsive multi-page personal portfolio website built with semantic HTML5 and external CSS3 for my 4th-year Computer Engineering coursework at the University of the Immaculate Conception (UIC).
 
-## What I Built
-- **Home (`index.html`):** Introduction, profile photo, short bio, and core skills overview.
-- **Projects (`projects.html`):** Responsive grid showcasing three projects with images, descriptions, and links.
-- **Contact (`contact.html`):** Accessible contact form with linked labels plus direct email and social links.
+### Pages Included
+- **Home (`index.html`):** Interactive space-themed Peeking Earth landing intro with audio playback, hero bio, portrait photo, and core engineering skills.
+- **Projects (`projects.html`):** Multi-image showcase featuring my Computer Engineering thesis (*Automated Library Management System*), a medical imaging computer vision model (*Nodule Detection Using Machine Learning*), and a boarding house rental app concept (*RentHub*).
+- **Contact (`contact.html`):** Direct university email, phone, GitHub profile links, and a responsive contact form.
 
-## What I Found Hardest
-- Making the grid and hero layouts adapt cleanly across 360px, 768px, and 1440px screens without horizontal scrolling.
+## Features & Technical Highlights
+- **Pure Semantic HTML5 & External CSS3:** Structured with `<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<figure>`, and `<footer>` with zero inline styles.
+- **Responsive Design:** Tested across mobile (`360px`), tablet (`768px`), and desktop (`1440px`) viewports using CSS Grid and Flexbox without horizontal overflow.
+- **Extra Credit Enhancements:** CSS-only Light/Dark theme toggle (`:checked` + custom properties), keyframe entrance animations, and an interactive Peeking Earth landing screen.
 
-## What I Would Improve
-- Add a CSS-only dark/light mode toggle and a custom `404.html` error page.
+## Reflection
+- **What worked well:** Structuring layouts with CSS Grid and custom CSS variables made it straightforward to support both light and dark themes and adapt multi-image project galleries cleanly from desktop down to 360px mobile screens.
+- **Challenges & fixes:** Managing Windows-to-WSL file transfers introduced hidden `:Zone.Identifier` files and duplicate extensions (such as `.mp3.mp3`), which I resolved directly in the Ubuntu terminal using `ls` and `mv` before pushing to GitHub.
 
-## Deployment Setup
-- Source code is version-controlled in GitHub (`main` branch).
-- Connected to Cloudflare Pages as a static HTML/CSS site (no build command or output directory required) for automatic deployments on every push.
-
-## Acknowledgments
-- Starter structure and responsive CSS layout scaffolding were drafted with AI assistance and customized with my own content, images, and styling adjustments.
+## AI Usage Acknowledgment
+AI assistance was used to help structure semantic HTML5 templates, refine responsive CSS Grid/Flexbox rules, debug WSL file path issues, and review W3C validation compliance. All project descriptions, screenshots, and personal details are my own.
