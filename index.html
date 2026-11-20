@@ -158,16 +158,18 @@
   </div>
 
   <script>
-    const enterCheckbox = document.getElementById("enter-site");
+    const earthTrigger = document.querySelector(".earth-trigger");
     const introAudio = document.getElementById("intro-audio");
     const audioToggle = document.getElementById("audio-toggle");
 
-    enterCheckbox.addEventListener("change", () => {
-      if (enterCheckbox.checked) {
-        introAudio.currentTime = 0;
-        introAudio.play().catch(() => {});
+    earthTrigger.addEventListener("click", () => {
+      introAudio.currentTime = 0;
+      introAudio.play().then(() => {
         audioToggle.textContent = "Pause Intro";
-      }
+      }).catch((err) => {
+        console.error("Audio error:", err);
+        audioToggle.textContent = "Play Intro";
+      });
     });
 
     audioToggle.addEventListener("click", () => {
