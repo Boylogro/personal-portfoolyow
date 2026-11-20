@@ -1005,34 +1005,32 @@
       top: 52px;
       font-size: 0.8rem;
     }
-    /* =========================================================
+/* =========================================================
    Audio-Harmonic / Beat-Reactive Color Sync
    ========================================================= */
-.site-wrapper {
-    --beat-hue-num: 0;
-    --beat-energy: 0;
-    --beat-scale: 1;
+   .site-wrapper.music-reactive {
+    --primary: var(--beat-color, #4f46e5);
+    --primary-hover: var(--beat-color, #4338ca);
+    --accent: var(--beat-accent, #06b6d4);
   }
   
-  .site-wrapper.music-reactive {
-    --primary: hsl(calc(245 + var(--beat-hue-num)), 86%, 60%);
-    --primary-hover: hsl(calc(245 + var(--beat-hue-num)), 86%, 52%);
-    --accent: hsl(calc(190 + var(--beat-hue-num)), 92%, 52%);
+  .site-wrapper.music-reactive .site-header {
+    border-bottom: 2px solid var(--beat-color, var(--primary));
+    box-shadow: 0 4px 26px var(--beat-glow-soft, rgba(99, 102, 241, 0.25));
   }
   
   .site-wrapper.music-reactive .hero {
-    border-color: hsla(calc(245 + var(--beat-hue-num)), 90%, 65%, calc(0.35 + var(--beat-energy) * 0.55));
+    border-color: var(--beat-color, #6366f1);
     box-shadow:
-      0 20px 50px hsla(calc(245 + var(--beat-hue-num)), 85%, 52%, calc(0.22 + var(--beat-energy) * 0.45)),
-      inset 0 0 calc(20px + var(--beat-energy) * 35px) hsla(calc(190 + var(--beat-hue-num)), 90%, 55%, calc(0.08 + var(--beat-energy) * 0.22));
+      0 0 var(--beat-spread, 28px) var(--beat-glow, rgba(99, 102, 241, 0.55)),
+      inset 0 0 34px var(--beat-glow-soft, rgba(34, 211, 238, 0.25));
   }
   
   .site-wrapper.music-reactive .gradient-text {
     background: linear-gradient(
       135deg,
-      hsl(calc(245 + var(--beat-hue-num)), 95%, 76%) 0%,
-      hsl(calc(195 + var(--beat-hue-num)), 95%, 62%) 55%,
-      hsl(calc(310 + var(--beat-hue-num)), 92%, 68%) 100%
+      var(--beat-color, #a5b4fc) 0%,
+      var(--beat-accent, #22d3ee) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
@@ -1040,20 +1038,30 @@
   }
   
   .site-wrapper.music-reactive .status-badge {
-    color: var(--accent);
-    border-color: var(--accent);
-    background-color: hsla(calc(190 + var(--beat-hue-num)), 90%, 55%, 0.14);
+    color: var(--beat-accent, #22d3ee);
+    border-color: var(--beat-accent, #22d3ee);
+    background-color: var(--beat-glow-soft, rgba(34, 211, 238, 0.16));
   }
   
   .site-wrapper.music-reactive .portrait-frame {
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    transform: scale(var(--beat-scale));
-    box-shadow: 0 0 calc(28px + var(--beat-energy) * 38px) hsla(calc(245 + var(--beat-hue-num)), 90%, 60%, calc(0.45 + var(--beat-energy) * 0.45));
-    transition: transform 0.08s ease-out;
+    background: linear-gradient(135deg, var(--beat-color, #6366f1), var(--beat-accent, #22d3ee));
+    transform: scale(var(--beat-scale, 1));
+    box-shadow: 0 0 calc(var(--beat-spread, 28px) * 1.25) var(--beat-glow, rgba(99, 102, 241, 0.65));
+    transition: none;
   }
   
-  .site-wrapper.music-reactive .skill-card {
-    border-color: hsla(calc(245 + var(--beat-hue-num)), 85%, 60%, calc(0.25 + var(--beat-energy) * 0.45));
+  .site-wrapper.music-reactive .skill-card,
+  .site-wrapper.music-reactive .project-card,
+  .site-wrapper.music-reactive .contact-details li,
+  .site-wrapper.music-reactive .contact-form {
+    border-color: var(--beat-color, var(--primary));
+    box-shadow: 0 8px var(--beat-spread, 24px) var(--beat-glow-soft, rgba(99, 102, 241, 0.25));
+    transition: transform 0.22s ease;
+  }
+  
+  .site-wrapper.music-reactive .audio-pill {
+    background: linear-gradient(135deg, var(--beat-color, #4f46e5), var(--beat-accent, #0ea5e9));
+    box-shadow: 0 0 22px var(--beat-glow, rgba(99, 102, 241, 0.6));
   }
   
   /* Equalizer Bars Inside Audio Pill */
@@ -1079,10 +1087,4 @@
     transform-origin: bottom;
     transition: transform 0.07s ease-out;
   }
-  .site-wrapper.music-reactive .project-card,
-.site-wrapper.music-reactive .contact-details li,
-.site-wrapper.music-reactive .contact-form {
-  border-color: hsla(calc(245 + var(--beat-hue-num)), 85%, 60%, calc(0.28 + var(--beat-energy) * 0.45));
-  box-shadow: 0 12px 32px hsla(calc(245 + var(--beat-hue-num)), 85%, 52%, calc(0.08 + var(--beat-energy) * 0.18));
-}
   }
